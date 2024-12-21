@@ -16,17 +16,37 @@ export const MessageController = {
       data: { content: aNewQuote.content, sender: 'API', conversationId },
       include: { conversation: true },
     });
-    console.log(newQuoteMessage);
 
     setTimeout(() => {
       io.emit('go', JSON.stringify(newQuoteMessage));
-    }, 3300);
+    }, 3200);
 
     try {
       res.status(201).json({
         success: true,
         message: 'message created!',
         data: newMessage,
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateMessage: async (req: Request, res: Response, next: NextFunction) => {
+    const { messageId, ...updateData } = req.body;
+
+    console.log('@@@@', req.body);
+
+    const updatedMessage = await prisma.message.update({
+      where: { id: messageId },
+      data: { ...updateData },
+      include: { conversation: true },
+    });
+
+    try {
+      res.status(200).json({
+        success: true,
+        message: 'message updated!',
+        data: updatedMessage,
       });
     } catch (error) {
       next(error);

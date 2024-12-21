@@ -18,7 +18,6 @@ routes.delete(
 );
 routes.put('/conversations', ConversationController.updateConversations);
 
-
-
 routes.post('/messages', MessageController.createMessage);
 routes.delete('/messages/:id', MessageController.deleteMessage);
+routes.put('/messages', MessageController.updateMessage);

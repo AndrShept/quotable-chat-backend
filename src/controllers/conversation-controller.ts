@@ -114,7 +114,7 @@ export const ConversationController = {
       });
       res.status(200).json({
         success: true,
-        message: 'Conversation updated success',
+        message: 'Chat updated success',
       });
     } catch (error) {
       next(error);
