@@ -34,7 +34,9 @@ export const MessageController = {
   updateMessage: async (req: Request, res: Response, next: NextFunction) => {
     const { messageId, ...updateData } = req.body;
 
-    console.log('@@@@', req.body);
+    if (!messageId) {
+      return res.status(404).json('messageId not found');
+    }
 
     const updatedMessage = await prisma.message.update({
       where: { id: messageId },

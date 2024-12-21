@@ -72,7 +72,7 @@ export const ConversationController = {
       });
       res.status(201).json({
         success: true,
-        message: 'Conversation created!',
+        message: 'Chat created!',
         data: newConversation,
       });
     } catch (error) {
